@@ -64,6 +64,11 @@ function set(){
             // Selecciona nivel
             let level = document.getElementById("level");
 
+            if(contadorMonedas > 225){
+                document.getElementById("flecha").classList.remove("flex");
+                document.getElementById("flecha").classList.add("hidden")
+            }
+
             if(contadorMonedas == 5){
                 // Se mueve la fleha hacia el siguiente planeta
                 document.getElementById("flecha").classList.remove("left-[37%]");
@@ -295,9 +300,13 @@ function set(){
 
                 document.getElementById("flecha").classList.remove("flex");
                 document.getElementById("flecha").classList.add("hidden");
+
             } else if(contadorMonedas == 226){
                 document.getElementById("siguienteNivel").classList.remove("hidden");
                 document.getElementById("siguienteNivel").classList.add("flex");
+
+                document.getElementById("flecha").classList.remove("flex");
+                document.getElementById("flecha").classList.add("hidden");
             }
         });
     contador++;
@@ -332,7 +341,6 @@ function aparecerParrafo2(){
 }
 
 function cambiarDeNivel(){
-    contador = 3;
     document.getElementById("siguienteNivel").addEventListener("click", ()=>{
         body.classList.remove(`bg-[url('../img/fondo-espacio3.png')]`);
         body.classList.add(`bg-[url('../img/fondo-espacio5.jpg')]`);
@@ -342,6 +350,44 @@ function cambiarDeNivel(){
         audioFondo.loop = true;
 
         document.getElementById("level").innerHTML = `<p id="level" class="text-white font-mono text-[50px]">4</p>`;
+        document.getElementById("siguienteNivel").classList.remove("flex");
+        document.getElementById("siguienteNivel").classList.add("hidden");
+
+        setTimeout(()=>{
+            document.getElementById("siguienteNivel2").classList.remove("hidden");
+            document.getElementById("siguienteNivel2").classList.add("flex");
+        }, 15000);
+
+        document.getElementById("flecha").classList.remove("flex");
+        document.getElementById("flecha").classList.add("hidden");
+
+        document.getElementById("contenedor-planetas3").classList.remove("flex");
+        document.getElementById("contenedor-planetas3").classList.add("hidden");
+
+
     })
 }
 cambiarDeNivel();
+
+function cambiarDeNivel2(){
+    document.getElementById("siguienteNivel2").addEventListener("click", ()=>{
+        body.classList.remove(`bg-[url('../img/fondo-espacio5.jpg')]`);
+        body.classList.add(`bg-[url('../img/fondo-espacio4.jpg')]`);
+        setTimeout(()=>{
+            document.getElementById("level").innerHTML = `<p id="level" class="text-white font-mono text-[50px]">5</p>`;
+        }, 100)
+
+        audioFondo.src = "img/audioFondo5.mp3";
+        audioFondo.play();
+        audioFondo.loop = true;
+
+        document.getElementById("level").innerHTML = `<p id="level" class="text-white font-mono text-[50px]">4</p>`;
+        document.getElementById("siguienteNivel2").classList.remove("flex");
+        document.getElementById("siguienteNivel2").classList.add("hidden");
+
+        document.getElementById("contenedor-planetas3").classList.remove("flex");
+        document.getElementById("contenedor-planetas3").classList.add("hidden")
+    })
+};
+
+cambiarDeNivel2();
